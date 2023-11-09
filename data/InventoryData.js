@@ -1,31 +1,22 @@
+//Common convention to name constants data that will not be changed in all caps
 const DUMMY_INVENTORY = [
   {
     id: "i1",
     itemName: "Cobblestone",
     qty: 10,
-    position: "",
-    stackable: true,
+    position: "p1",
   },
   {
     id: "i2",
     itemName: "Dirt",
     qty: 64,
-    position: "",
-    stackable: true,
+    position: "p2",
   },
   {
     id: "i3",
-    itemName: "Dead_Bush",
+    itemName: "Sand",
     qty: 64,
-    position: "",
-    stackable: true,
-  },
-  {
-    id: "i4",
-    itemName: "Wooden Sword",
-    qty: 1,
-    position: "",
-    stackable: false,
+    position: "p3",
   },
 ];
 

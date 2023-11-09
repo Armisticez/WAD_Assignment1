@@ -5,35 +5,75 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-// let questions = "Instructions:" + "add item";
-let questions = "";
+let questions =
+  "Choose an option:\n" +
+  "1. Instructions\n" +
+  "2. Get Inventory items\n" +
+  "3. Add an item and its quantity\n" +
+  "4. Remove an item and its quantity\n" +
+  "5. Move position of an item in the inventory\n" +
+  "6. Get available storage positions\n";
 
 let handleOption = function (option) {
   switch (+option) {
     case 1:
-      "1";
+      InventoryServices.handleInstruction();
+      setTimeout(() => {
+        rl.question(questions, handleOption);
+      }, 1500);
       break;
     case 2:
-      "2";
+      InventoryServices.handleGetInventoryList();
+      setTimeout(() => {
+        rl.question(questions, handleOption);
+      }, 1500);
+      break;
+    case 3:
+      //Nested callbacks
+      rl.question("Please enter item to be added: ", (name) => {
+        rl.question("Please enter quantity to be added: ", (qty) => {
+          InventoryServices.handleAddItemToInventory(name, qty);
+          setTimeout(() => {
+            rl.question(questions, handleOption);
+          }, 1500);
+        });
+      });
+
+      break;
+    case 4:
+      //Nested callbacks
+      rl.question("Please enter item to be removed: ", (name) => {
+        rl.question("Please enter quantity to be removed: ", (qty) => {
+          InventoryServices.handleRemoveItemFromInventory(name, qty);
+          setTimeout(() => {
+            rl.question(questions, handleOption);
+          }, 1500);
+        });
+      });
+      break;
+    case 5:
+      //Nested callbacks
+      rl.question("Please enter item to be move: ", (name) => {
+        rl.question("Please enter new location: ", (qty) => {
+          InventoryServices.handleMoveItemPosition(name, qty);
+          setTimeout(() => {
+            rl.question(questions, handleOption);
+          }, 1500);
+        });
+      });
+      break;
+    case 6:
+      InventoryServices.handleGetAvailableStorage();
+      setTimeout(() => {
+        rl.question(questions, handleOption);
+      }, 1500);
       break;
   }
-  //Executes a default JS function that requires 2 parameters. The first parameter is a function, the second is
-  //the duration in seconds
+  //Executed if 'option' input is not a case
   setTimeout(() => {
     rl.question(questions, handleOption);
   }, 1500);
 };
 
+//One time execution when the program runs
 rl.question(questions, handleOption);
-InventoryServices.removeItemFromInventory("dirt", 44);
-// InventoryServices.getInventoryList();
-module.exports = {
-  // Explain what function A does
-  functionA() {
-    return 1 + 2;
-  },
-  // Explain what function B does
-  functionB() {
-    console.log("Hello function B");
-  },
-};
