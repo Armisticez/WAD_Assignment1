@@ -1,17 +1,22 @@
 var inventoryData = require("../data/InventoryData");
-//^Assign as variable instead of const as object will be modified
+//^Assign as variable instead of const as array will be modified
 
-var inventoryCapacity = 36;
-console.log("this is ran");
+const inventoryCapacity = 36;
+
+//Assigned globally to allow function to be used in 'handleGetAvailableStorage' & 'handleMoveItemPosition'
 const handleAvailablePositions = () => {
   let positions = [];
   let unavailablePosition = [];
+
+  //All positions used in inventoryData
   for (let i = 0; i < inventoryData.length; i++) {
     unavailablePosition.push(inventoryData[i].position);
   }
+  //All possible positions
   for (let i = 1; i <= inventoryCapacity; i++) {
     positions.push("p" + i);
   }
+  //Available positions
   let availablePositions = positions.filter(
     (item) => !unavailablePosition.includes(item)
   );
@@ -28,7 +33,7 @@ const handleInstruction = () => {
   console.log(instruction);
 };
 
-//DONE
+
 const handleGetInventoryList = () => {
   console.log(inventoryData);
 };
@@ -43,18 +48,18 @@ const handleAddItemToInventory = (name, qty) => {
   //Add item if item does not exists
   if (existingItemIndex === -1) {
     inventoryData.push({
-      id: "i" + (inventoryData.length + 1),
+      id: "i" + (inventoryData.length + 1), // (inventoryData.length + 1) to turn length to int
       itemName: name,
       qty: +qty, //adding '+' converts qty to int
       position: "p" + (inventoryData.length + 1), // (inventoryData.length + 1) to turn length to int
     });
-    console.log(`${qty} ${name} has been added into the inventory!`);
+    console.log(`${qty} ${name} has been added into the inventory!`); //Backtick to allow use of both strings and variables
     return;
   } else {
-    const existingInventoryItem = inventoryData[existingItemIndex];
+    const existingInventoryItem = inventoryData[existingItemIndex]; //The object of the selected item
 
     const updateItem = {
-      ...existingInventoryItem,
+      ...existingInventoryItem, //spread operator to use back existing object properties
       qty: existingInventoryItem.qty + +qty,
     };
     inventoryData[existingItemIndex] = updateItem;
@@ -65,7 +70,6 @@ const handleAddItemToInventory = (name, qty) => {
   }
 };
 
-//DONE
 const handleRemoveItemFromInventory = (name, qty) => {
   //Find Index of Object in the Array 'inventoryData' where the 'itemName' matches the user input item
   //Ignore case sensitivity by converting all characters to lower case
@@ -97,11 +101,7 @@ const handleRemoveItemFromInventory = (name, qty) => {
     inventoryData = inventoryData.filter(
       (item) => item.itemName.toLowerCase() !== name.toLowerCase()
     );
-    // console.log("=======================");
-    // inventoryData.forEach(function (item) {
-    //   console.log(item);
-    // });
-    // console.log("=======================");
+
     console.log(
       `${existingInventoryItem.itemName} has been removed from the inventory!`
     );
@@ -109,16 +109,11 @@ const handleRemoveItemFromInventory = (name, qty) => {
   //Remove a portion of the quantity of the item
   else {
     const updateItem = {
-      ...existingInventoryItem,
+      ...existingInventoryItem, //spread operator to use back existing object properties
       qty: existingInventoryItem.qty - qty,
     };
     inventoryData[existingItemIndex] = updateItem;
-    // console.log(inventoryData[existingInventoryIndex]);
-    // console.log("=======================");
-    // inventoryData.forEach(function (item) {
-    //   console.log(item);
-    // });
-    // console.log("=======================");
+
     console.log(
       `${qty} ${existingInventoryItem.itemName} has been removed from the inventory!`
     );
@@ -126,7 +121,6 @@ const handleRemoveItemFromInventory = (name, qty) => {
   }
 };
 
-//DONE
 const handleMoveItemPosition = (name, position) => {
   const existingItemIndex = inventoryData.findIndex(
     (item) => item.itemName.toLowerCase() === name.toLowerCase()
@@ -157,7 +151,7 @@ const handleMoveItemPosition = (name, position) => {
     console.log("Invalid Position!");
     return;
   }
-  // console.log(inventoryData[existingItemIndex].position); //cannot use existingPositionIndex as it will be undefined
+
   inventoryData[existingItemIndex].position = position;
   console.log(
     `Moved ${inventoryData[existingItemIndex].itemName}'s to ${position} from ${oldPosition}`
