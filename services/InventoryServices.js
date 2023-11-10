@@ -158,12 +158,10 @@ const handleMoveItemPosition = (name, position) => {
   );
 };
 
-//DONE
 const handleGetAvailableStorage = () => {
   console.log(handleAvailablePositions());
 };
 
-// addItemToInventory("Dirt", 10);
 module.exports = {
   handleInstruction,
   handleGetInventoryList,
