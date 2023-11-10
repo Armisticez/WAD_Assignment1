@@ -27,9 +27,9 @@ const handleInstruction = () => {
   let instruction =
     "This program is a simple clone of how a Minecraft inventory might function. \n" +
     "In-built are a few items assigned by the program by default. Each item will \n" +
-    "be assigned an inventory space, labelled position There inventory can only \n" +
-    "hold up to 36 sets of items. There inventory can only hold up to 36 sets \n" +
-    "of items. Please select an option (1-6) to execute to corresponding function";
+    "be assigned an inventory space, labelled position. The inventory can only \n" +
+    "hold up to 36 sets of items.\n" +
+    "Please select an option (1-6) to execute the corresponding function";
   console.log(instruction);
 };
 
