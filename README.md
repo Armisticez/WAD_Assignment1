@@ -10,6 +10,8 @@ Create package.json using 'npm init -y'
 
 Instructions
 =============
+Open Terminal through View > Terminal or Ctrl + `
+
 Terminal -> execute 'npm start' -> execute file 'app.js' requires app to be restarted for changes to be updated
     package.json: "scripts": { "start": "node OngZhengXiang_app.js" }
 Terminal -> execute 'npm run dev' -> execute file 'app.js' automatically refresh app when changes are made
