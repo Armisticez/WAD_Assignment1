@@ -7,12 +7,12 @@ How to run
 =============
 Open Terminal through View > Terminal or Ctrl + `
 
-Terminal -> execute 'npm start' -> execute file 'app.js' requires app to be restarted for changes to be updated
+Terminal -> execute 'npm start' -> execute file 'OngZhengXiang_app.js' requires app to be restarted for changes to be updated
     package.json: "scripts": { "start": "node OngZhengXiang_app.js" }
 
-Terminal -> execute 'npm run dev' -> execute file 'app.js' automatically refresh app when changes are made
+Terminal -> execute 'npm run dev' -> execute file 'OngZhengXiang_app.js' automatically refresh app when changes are made
     package.json: "scripts": { "start": "nodemon OngZhengXiang_app.js" }
-    
+
 Terminal -> execute 'node OngZhengXiang_app.js'/'nodemon OngZhengXiang_app.js'
 
 Functions
